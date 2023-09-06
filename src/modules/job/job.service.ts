@@ -61,8 +61,6 @@ import { JobStepFilterDTO } from './dto/job-step-filter.dto';
 import { UpdateJobImageDTO } from './dto/job-update-image.dto';
 import {
   differenceInMonths,
-  differenceInYears,
-  format,
   startOfMonth,
   startOfYear,
   subMonths,
@@ -71,13 +69,6 @@ import {
 import { GetAllJobsQueryParamsDto } from './dto/get-all-jobs-query-params.dto';
 import { PushStartService } from '@libs/push-start/push-start.service';
 import { PsTestResult } from 'src/schemas/ps-test-result.schema';
-import {
-  genderTranslation,
-  humanRaceTranslation,
-  pcdTranslation,
-  sexualOrientationTranslate,
-} from '@shared/translations';
-import { CourseService } from '@modules/course/course.service';
 @Injectable()
 export class JobService {
   employerPopulate = {
@@ -166,7 +157,6 @@ export class JobService {
   private jobImagePath: string;
 
   constructor(
-    private courseService: CourseService,
     @InjectModel(Job.name)
     private jobModel: AggregatePaginateModel<JobDocument>,
     @InjectModel(JobStep.name)
@@ -183,6 +173,8 @@ export class JobService {
     private jobPageModel: PaginateModel<JobDocument>,
     @Inject(forwardRef(() => PushStartService))
     private pushStartService: PushStartService,
+    // @Inject(forwardRef(() => MacroJobService))
+    // private macroJobService: MacroJobService,
     @InjectModel(MacroJob.name)
     private macroJobModel: Model<MacroJobDocument>,
   ) {
@@ -414,7 +406,7 @@ export class JobService {
   async findAllJobsWithFliters(
     params?: GetAllJobsQueryParamsDto,
     entityId?: string,
-    role: string = DefaultRoles.employer,
+    role?: string,
   ) {
     const jobDefaultPaginateOptions: PaginateOptions<IJob> = {
       page: params.page,
@@ -577,6 +569,31 @@ export class JobService {
       };
     }
 
+    if (params?.employeer?.length) {
+      query = {
+        ...query,
+        employer: { $eq: { _id: new ObjectId(params.employeer) } },
+      };
+    }
+
+    if (params?.job?.length) {
+      query = {
+        ...query,
+        _id: new ObjectId(params.job),
+      };
+    }
+
+    // if(params?.macroJob){
+    //     const macroJob =  await this.macroJobService
+    //     .findOne(params.macroJob);
+
+    //     if(macroJob){
+    //       query ={
+    //         ...query,
+    //         _id : new ObjectId(macroJob.jobs[1].id)
+    //       }
+    //     }
+    //   }
     return query;
   }
 
@@ -2063,87 +2080,93 @@ export class JobService {
     return jobsAggregate;
   }
 
-  async getJobStatistics(jobId: string) {
-    const courses = await this.courseService.findAll({ limit: 5000 });
-    const job: IJob = await this.findOne(jobId);
-    const steps = job.steps;
-    const reversedSteps = steps.reverse();
-    const candidateList = [];
-    for (const step of reversedSteps) {
-      const stepData = await this.findOneStep(step._id);
-      const stepCandidates = stepData.candidates;
-      for (const candidation of stepCandidates) {
-        const { candidate } = candidation;
-        if (
-          candidateList.find(
-            (data) => data['ID na plataforma'] === candidate._id.toString(),
-          )
-        ) {
-          return;
-        }
-        const candidateData: any = {};
-        candidateData['ID na plataforma'] = candidate._id;
-        candidateData.Nome = candidate.firstName;
-        candidateData.Sobrenome = candidate.lastName;
-        candidateData.Idade = differenceInYears(
-          new Date(),
-          candidate.birthDate,
-        );
-        candidateData.Etapa = stepData.name;
-        candidateData.Status = candidation.status;
-        candidateData['Orientação sexual'] =
-          sexualOrientationTranslate[candidate.about.sexualOrientation];
-        candidateData['Gênero'] = genderTranslation[candidate.gender];
-        candidateData.Etnia = humanRaceTranslation[candidate.about.humanRace];
-        candidateData['Deficiência'] = pcdTranslation[candidate.about.pcd];
-        candidateData.Bairro = candidate.neighborhood;
-        candidateData.Cidade = candidate.city;
-        candidateData.Estado = candidate.state.name;
-        candidate.academicBackgrounds.map((academicBackground, key) => {
-          const courseData = courses.docs.find(
-            (course) => course._id.toString() === academicBackground.course,
-          );
-          candidateData[`Formação [${key + 1}]`] =
-            courseData?.name || 'Curso não identificado';
-          candidateData[`Instituição de ensino [${key + 1}]`] =
-            academicBackground.university.name;
-          candidateData[`Data de início [${key + 1}]`] = format(
-            academicBackground.startDate,
-            'dd/MM/yyyy',
-          );
-          candidateData[`Previsão de conclusão [${key + 1}]`] = format(
-            academicBackground.endDate,
-            'dd/MM/yyyy',
-          );
-          candidateData[`Previsão de conclusão (meses) [${key + 1}]`] =
-            differenceInMonths(academicBackground.endDate, new Date()) > 0
-              ? differenceInMonths(academicBackground.endDate, new Date())
-              : 0;
-        });
+  async getJobStatisticsForAllJobs() {
+    const jobs = await this.findAllJobsSimple({ limit: 5000 }); // Adjust limit as needed
+    const statistics = {
+      InscritosGeralProgramaEstagio: 0,
+      InscritosPorAreaVaga: {}, // Statistics by area/vacancy
+      Etnia: {}, // Statistics by ethnicity
+      Genero: {}, // Statistics by gender
+      Pcd: {}, // Statistics by disability
+      Etapas: {
+        Inscrito: 0,
+        AssessmentGamificado: 0,
+        Triagem: 0,
+        EntrevistaAU: 0,
+        PainelOnline: 0,
+        EntrevistaPessoaGestora: 0,
+        ResultadoFinal: 0,
+      },
+    };
 
-        if (candidation.psTestResults) {
-          candidateData['Status do teste (PushStart)'] =
-            candidation.psTestResults.status;
-          if (candidation.psTestResults.results) {
-            candidation.psTestResults.results.map((resultado) => {
-              candidateData[`${resultado.name}`] = resultado.score;
-            });
-            candidateData['Média PushStart'] =
-              Number(
-                (
-                  candidation.psTestResults.results
-                    .map((resultado) => resultado.score)
-                    .reduce((a, b) => a + b, 0) /
-                  candidation.psTestResults.results.length
-                ).toFixed(2),
-              ) || 0;
+    for (const job of jobs.docs) {
+      for (const step of job.steps) {
+        for (const participant of step.candidates) {
+          if (participant.status === JobStepCandidateStatus.INITIAL) {
+            // Count total program internship applicants
+            statistics.InscritosGeralProgramaEstagio++;
+
+            // Count applicants by area/vacancy
+            const area = job.area || 'Sem Área Específica'; // Use a default if no area specified
+            if (!statistics.InscritosPorAreaVaga[area]) {
+              statistics.InscritosPorAreaVaga[area] = 0;
+            }
+            statistics.InscritosPorAreaVaga[area]++;
+
+            // Count applicants by ethnicity
+            const ethnicity =
+              participant.candidate.about.humanRace || 'Não Informada'; // Use a default if not specified
+            if (!statistics.Etnia[ethnicity]) {
+              statistics.Etnia[ethnicity] = 0;
+            }
+            statistics.Etnia[ethnicity]++;
+
+            // Count applicants by gender
+            const gender = participant.candidate.gender || 'Não Informado'; // Use a default if not specified
+            if (!statistics.Genero[gender]) {
+              statistics.Genero[gender] = 0;
+            }
+            statistics.Genero[gender]++;
+
+            // Count applicants by disability
+            const disability =
+              participant.candidate.about.pcd || 'Não Informada'; // Use a default if not specified
+            if (!statistics.Pcd[disability]) {
+              statistics.Pcd[disability] = 0;
+            }
+            statistics.Pcd[disability]++;
+          }
+
+          // Count applicants by stage
+          switch (step.name) {
+            case 'Inscrito':
+              statistics.Etapas.Inscrito++;
+              break;
+            case 'AssessmentGamificado':
+              statistics.Etapas.AssessmentGamificado++;
+              break;
+            case 'Triagem':
+              statistics.Etapas.Triagem++;
+              break;
+            case 'EntrevistaAU':
+              statistics.Etapas.EntrevistaAU++;
+              break;
+            case 'PainelOnline':
+              statistics.Etapas.PainelOnline++;
+              break;
+            case 'EntrevistaPessoaGestora':
+              statistics.Etapas.EntrevistaPessoaGestora++;
+              break;
+            case 'ResultadoFinal':
+              statistics.Etapas.ResultadoFinal++;
+              break;
+            default:
+              break;
           }
         }
-
-        candidateList.push(candidateData);
       }
     }
 
-    return candidateList;
+    return statistics;
   }
 }

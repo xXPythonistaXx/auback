@@ -55,4 +55,16 @@ export class GetAllJobsQueryParamsDto extends PaginationDto {
   @Transform(({ value }) => value === 'true')
   @IsBoolean()
   withMacroJob?: boolean;
+
+  @IsOptional()
+  @Transform(({ value }) => value?.replace(/\s/g, '').toLowerCase())
+  employeer?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => value?.replace(/\s/g, '').toLowerCase())
+  job?: string;
+
+  @IsOptional()
+  @Transform(({ value }) => value?.replace(/\s/g, '').toLowerCase())
+  macroJob?: string;
 }

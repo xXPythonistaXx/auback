@@ -50,6 +50,13 @@ export class JobController {
     );
   }
 
+  @Get('jobsInfo')
+  @Public()
+  async getAllJobsInfo() {
+    const statistics = await this.jobService.getJobStatisticsForAllJobs();
+    return statistics;
+  }
+
   @Get('filterBySomeField')
   getAllJobsBySomeField(
     @Query() params: GetAllJobsQueryParamsDto,
@@ -66,12 +73,6 @@ export class JobController {
   @Public()
   async findJobById(@Param('id') id: string, @Query() params) {
     return this.jobService.findOne(id, params);
-  }
-
-  @Get(':id/statistics')
-  @Public()
-  async getJobStatistics(@Param('id') id: string) {
-    return this.jobService.getJobStatistics(id);
   }
 
   @Post()

@@ -22,17 +22,13 @@ import { BadRequestException } from '@nestjs/common';
 import { PushStartService } from '@libs/push-start/push-start.service';
 import { PsTestResult } from 'src/schemas/ps-test-result.schema';
 import { MacroJob } from 'src/schemas/macro-job/macro-job.schema';
-import { CourseService } from '@modules/course/course.service';
+import { MacroJobService } from '@modules/macro-job/macro-job.service';
 
 describe('JobService', () => {
   let sut: JobService;
 
   const S3ServiceMock = {
     uploadMedia: jest.fn().mockReturnValue({ location: 'ok', key: 'ok' }),
-  };
-
-  const CourseServiceMock = {
-    findAll: jest.fn(),
   };
 
   const JobModelMock = {
@@ -66,10 +62,7 @@ describe('JobService', () => {
         JobService,
         PinoService,
         PushStartService,
-        {
-          provide: CourseService,
-          useValue: CourseServiceMock,
-        },
+        MacroJobService,
         {
           provide: getModelToken(Job.name),
           useValue: JobModelMock,

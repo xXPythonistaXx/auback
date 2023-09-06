@@ -15,7 +15,7 @@ import { JobController } from './job.controller';
 import { JobService } from './job.service';
 import { LoggerModule } from '@modules/logger/logger.module';
 import { PushStartModule } from '@libs/push-start/push-start.module';
-import { CourseModule } from '@modules/course/course.module';
+import { MacroJobModule } from '@modules/macro-job/macro-job.module';
 
 @Module({
   imports: [
@@ -29,7 +29,7 @@ import { CourseModule } from '@modules/course/course.module';
     MailModule,
     LoggerModule,
     forwardRef(() => PushStartModule),
-    CourseModule,
+    forwardRef(() => MacroJobModule),
   ],
   providers: [JobService],
   controllers: [JobController],
