@@ -1,0 +1,130 @@
+{
+  "_id": "any_id",
+  "firstName": "Jhon",
+  "lastName": "Due",
+  "active": true,
+  "user": {
+    "_id": "any_user_id",
+    "email": "employee@hotmail.com",
+    "password": "any_password",
+    "emailConfirmed": true,
+    "emailConfirmationCode": "357602",
+    "emailConfirmationExpiration": "2023-03-15T13:39:56.780Z",
+    "role": {
+      "_id": "any_role_id",
+      "name": "employee",
+      "permissions": [
+        {
+          "_id": "640113134a2b23b01ed3c723",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c717",
+            "name": "employees"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c724",
+          "action": "update",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c717",
+            "name": "employees"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c725",
+          "action": "delete",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c717",
+            "name": "employees"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c726",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c718",
+            "name": "employers"
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72c",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72d",
+          "action": "update",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72e",
+          "action": "delete",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640155c99ba6e38e110877da",
+          "action": "read",
+          "subject": {
+            "_id": "640155c99ba6e38e110877d5",
+            "name": "jobs"
+          }
+        }
+      ]
+    },
+    "createdAt": "2023-03-15T13:38:57.166Z",
+    "updatedAt": "2023-03-16T14:11:41.085Z",
+    "__v": 0,
+    "resetPasswordCode": "2ccf49cd-f4e5-4485-8056-8e989271c22a",
+    "resetPasswordExpiration": "2023-03-16T14:12:41.085Z"
+  },
+  "favoriteJobs": [],
+  "employersFavorite": [],
+  "learnWorldsUserId": null,
+  "academicBackgrounds": [],
+  "experiences": [],
+  "tools": [],
+  "languages": [],
+  "certificates": [],
+  "createdAt": "2023-03-15T13:38:57.250Z",
+  "updatedAt": "2023-03-16T17:53:00.460Z",
+  "__v": 0
+}

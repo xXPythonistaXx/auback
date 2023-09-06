@@ -1,0 +1,484 @@
+{
+  "dtos": {},
+  "modules": {
+    "Auth": {
+      "name": "Auth",
+      "paths": {
+        "get": {
+          "me": {
+            "operation": {
+              "summary": "Informações do usuário autenticado",
+              "description": "Com base no token do usuário, a requisição retorna todas as informações do usuário."
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": "",
+                "examples": "",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "6411ca7196a5c836eb5d7634"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "employee@hotmail.com"
+                    },
+                    "emailConfirmed": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "emailConfirmationCode": {
+                      "type": "string",
+                      "example": "357602"
+                    },
+                    "emailConfirmationExpiration": {
+                      "type": "string",
+                      "example": "2023-03-15T13:39:56.780Z"
+                    },
+                    "role": {
+                      "type": "object",
+                      "example": {
+                        "_id": {
+                          "type": "string",
+                          "example": "640113144a2b23b01ed3c730"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "employee"
+                        },
+                        "permissions": {
+                          "type": "array",
+                          "example": {
+                            "_id": {
+                              "type": "string",
+                              "example": "640113134a2b23b01ed3c723"
+                            },
+                            "action": {
+                              "type": "string",
+                              "example": "read"
+                            },
+                            "subject": {
+                              "_id": {
+                                "type": "string",
+                                "example": "640113134a2b23b01ed3c717"
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "employees"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "favoriteJobs": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "employersFavorite": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "employersFavorite": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "employersFavorite": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "academicBackgrounds": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "experiences": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "employersFavorite": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "tools": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "languages": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "certificates": {
+                      "type": "array",
+                      "example": ""
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2023-03-15T13:38:57.250Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2023-03-15T13:38:57.250Z"
+                    },
+                    "about": {
+                      "type": "object",
+                      "example": {
+                        "resume": {
+                          "type": "string",
+                          "example": "Uma pessoa legal"
+                        },
+                        "videoUrl": {
+                          "type": "string",
+                          "example": "https://google.com"
+                        },
+                        "internshipModel": {
+                          "type": "array",
+                          "example": ["FROM_HOME", "HYBRID", "OFFICE"]
+                        },
+                        "humanRace": {
+                          "type": "string",
+                          "example": "BROWN"
+                        },
+                        "sexualOrientation": {
+                          "type": "string",
+                          "example": "HETEROSEXUAL"
+                        },
+                        "pcd": {
+                          "type": "string",
+                          "example": "PHYSICAL_IMPAIRED"
+                        },
+                        "livingPlace": {
+                          "type": "string",
+                          "example": "FORMAL_NEIGHBORHOOD"
+                        },
+                        "whereStudiedHighSchool": {
+                          "type": "string",
+                          "example": "PUBLIC"
+                        },
+                        "familyIncome": {
+                          "type": "string",
+                          "example": "LESS_THAN_ONE"
+                        },
+                        "studentship": {
+                          "type": "string",
+                          "example": "GOVERNMENT_SHIP"
+                        },
+                        "_id": {
+                          "type": "string",
+                          "example": "642267be7cfdcaf516c5322d"
+                        }
+                      }
+                    },
+                    "salaryExpectation": {
+                      "type": "number",
+                      "example": 100
+                    },
+                    "city": {
+                      "type": "string",
+                      "example": "Jacarei"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "example": "12981708474"
+                    },
+                    "state": {
+                      "type": "string",
+                      "example": "SP"
+                    },
+                    "instagramUrl": {
+                      "type": "string",
+                      "example": ""
+                    },
+                    "isAvailableForChange": {
+                      "type": "string",
+                      "example": "CITY_OR_STATE"
+                    },
+                    "isUniversityStudent": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "portfolioUrl": {
+                      "type": "string",
+                      "example": ""
+                    }
+                  }
+                }
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "post": {
+          "signin": {
+            "operation": {
+              "summary": "Users Login"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              },
+
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          },
+          "google": {
+            "operation": {
+              "summary": "Google social login",
+              "description": "Google social login"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              },
+
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          },
+          "facebook": {
+            "operation": {
+              "summary": "Facebook social login",
+              "description": "Facebook social login"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              },
+
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          },
+          "requestResetPassword": {
+            "operation": {
+              "summary": "Requisição de recuperação de senha",
+              "description": "Rota que solicita a a recuperação de senha do usuário, onde e gerado o link e enviado por email."
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              },
+
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "put": {
+          "refresh": {
+            "operation": {
+              "summary": "Utilizado para recuperar um token invalido ou expirado"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              }
+            }
+          },
+          "confirmEmail": {
+            "operation": {
+              "summary": "Rota de validação e confirmação de email",
+              "description": "Quando o usuário faz cadastro na plataforma e enviado um email com um link para poder ativar sua conta"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              }
+            }
+          },
+          "resendEmailConfirmation": {
+            "operation": {
+              "summary": "Rota de reenvio de validação e confirmação de email",
+              "description": "Quando o usuário faz cadastro na plataforma e enviado um email com um link para poder ativar sua conta"
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "Benefits": {
+      "name": "Benefits",
+      "paths": {
+        "get": {
+          "/": {
+            "operation": {
+              "summary": "Informações de benefícios do candidato.",
+              "description": ""
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": "",
+                "examples": "",
+                "schema": {}
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "post": {
+          "/": {
+            "operation": {
+              "summary": "Cadastrar um novo benefícios do candidato",
+              "description": ""
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": "",
+                "examples": "",
+                "schema": {}
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "put": {},
+        "patch": {}
+      }
+    },
+    "Course": {
+      "name": "Course",
+      "paths": {
+        "get": {
+          "course": {
+            "operation": {
+              "summary": "Get all courses",
+              "description": ""
+            },
+            "responses": {
+              "200": {
+                "status": 200,
+                "description": "",
+                "examples": "",
+                "schema": {}
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "post": {
+          "course": {
+            "operation": {
+              "summary": "Cadastra um único curso no banco de dados.",
+              "description": ""
+            },
+            "responses": {
+              "201": {
+                "status": 201,
+                "description": "",
+                "examples": "",
+                "schema": {}
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          },
+          "upload": {
+            "operation": {
+              "summary": "Cadastra um vários cursos no banco de dados, usando um arquivo csv.",
+              "description": ""
+            },
+            "responses": {
+              "201": {
+                "status": 201,
+                "description": "",
+                "examples": "",
+                "schema": {}
+              },
+              "404": {
+                "status": 404,
+                "description": ""
+              },
+              "500": {
+                "status": 500,
+                "description": ""
+              }
+            }
+          }
+        },
+        "put": {},
+        "patch": {}
+      }
+    }
+  }
+}

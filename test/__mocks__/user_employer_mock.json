@@ -1,0 +1,316 @@
+{
+  "_id": "64095c4f004aa99669319546",
+  "cnpj": "13347016000117",
+  "corporateName": "FACEBOOK SERVICOS ONLINE DO BRASIL LTDA.",
+  "active": true,
+  "jobs": [
+    "6411bfc0eaaf863e3dfc11a8",
+    "6411bfffeaaf863e3dfc1221",
+    "6411c085eaaf863e3dfc1350"
+  ],
+  "profileImage": {
+    "key": "any_key"
+  },
+  "user": {
+    "_id": "64095c4f004aa9966931953e",
+    "email": "contato@academiadouniversitario.com.br",
+    "emailConfirmed": true,
+    "emailConfirmationCode": "328477",
+    "emailConfirmationExpiration": "2023-03-09T04:11:55.575Z",
+    "role": {
+      "_id": "640113144a2b23b01ed3c731",
+      "name": "employer",
+      "permissions": [
+        {
+          "_id": "640113134a2b23b01ed3c727",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c718",
+            "name": "employers"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c728",
+          "action": "update",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c718",
+            "name": "employers"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c729",
+          "action": "delete",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c718",
+            "name": "employers"
+          },
+          "condition": {
+            "user": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72a",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c717",
+            "name": "employees"
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72c",
+          "action": "read",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72d",
+          "action": "update",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640113134a2b23b01ed3c72e",
+          "action": "delete",
+          "subject": {
+            "_id": "640113134a2b23b01ed3c716",
+            "name": "users"
+          },
+          "condition": {
+            "_id": {
+              "$eq": "${_id}"
+            }
+          }
+        },
+        {
+          "_id": "640155c99ba6e38e110877d6",
+          "action": "create",
+          "subject": {
+            "_id": "640155c99ba6e38e110877d5",
+            "name": "jobs"
+          },
+          "condition": {
+            "role": {
+              "$in": ["admin", "employer"]
+            }
+          }
+        },
+        {
+          "_id": "640155c99ba6e38e110877d7",
+          "action": "read",
+          "subject": {
+            "_id": "640155c99ba6e38e110877d5",
+            "name": "jobs"
+          },
+          "condition": {
+            "employer": {
+              "$eq": "${entityId}"
+            }
+          }
+        },
+        {
+          "_id": "640155c99ba6e38e110877d8",
+          "action": "update",
+          "subject": {
+            "_id": "640155c99ba6e38e110877d5",
+            "name": "jobs"
+          },
+          "condition": {
+            "employer": {
+              "$eq": "${entityId}"
+            }
+          }
+        },
+        {
+          "_id": "640155c99ba6e38e110877d9",
+          "action": "delete",
+          "subject": {
+            "_id": "640155c99ba6e38e110877d5",
+            "name": "jobs"
+          },
+          "condition": {
+            "employer": {
+              "$eq": "${entityId}"
+            }
+          }
+        }
+      ]
+    },
+    "createdAt": "2023-03-09T04:10:55.818Z",
+    "updatedAt": "2023-03-09T04:10:55.818Z",
+    "__v": 0
+  },
+  "favoriteCandidates": [
+    {
+      "_id": "640734ad088c9e5985b2b135",
+      "firstName": "Jhon",
+      "lastName": "Due",
+      "active": true,
+      "favoriteJobs": [],
+      "employersFavorite": ["64095c4f004aa99669319546"],
+      "learnWorldsUserId": null,
+      "academicBackgrounds": [],
+      "experiences": [],
+      "tools": [],
+      "languages": [],
+      "certificates": [],
+      "createdAt": "2023-03-07T12:57:17.814Z",
+      "updatedAt": "2023-03-15T12:52:09.783Z",
+      "__v": 0
+    },
+    {
+      "_id": "6407518d4f93576b9c79e656",
+      "firstName": "Jhon",
+      "lastName": "Due",
+      "active": true,
+      "favoriteJobs": [],
+      "employersFavorite": ["64095c4f004aa99669319546"],
+      "learnWorldsUserId": null,
+      "academicBackgrounds": [],
+      "experiences": [
+        {
+          "employer": "au",
+          "jobTitle": "saaa",
+          "startedAt": "2021-04-01",
+          "finishedAt": "2021-12-01",
+          "activities": "asas",
+          "_id": "640a1be7eaaf863e3dfbf89d"
+        },
+        {
+          "employer": "au",
+          "jobTitle": "asdsad",
+          "startedAt": "2023-01-01",
+          "finishedAt": "2023-03-01",
+          "activities": "adasdasd",
+          "_id": "640a1bfceaaf863e3dfbf8a3"
+        }
+      ],
+      "tools": [
+        {
+          "tool": {
+            "_id": "640155c89ba6e38e11087732",
+            "name": "Maya"
+          },
+          "level": "INTERMEDIATE",
+          "_id": "640a1d9beaaf863e3dfbf8dd"
+        }
+      ],
+      "languages": [
+        {
+          "language": {
+            "_id": "640155c79ba6e38e1108771e",
+            "name": "Francês"
+          },
+          "speaking": "INTERMEDIATE",
+          "writing": "INTERMEDIATE",
+          "reading": "ADVANCED",
+          "_id": "640a1d5beaaf863e3dfbf8c8"
+        },
+        {
+          "language": {
+            "_id": "640155c79ba6e38e1108771d",
+            "name": "Espanhol"
+          },
+          "speaking": "BASIC",
+          "writing": "BASIC",
+          "reading": "BASIC",
+          "_id": "640b6522eaaf863e3dfbfcd1"
+        }
+      ],
+      "certificates": [],
+      "createdAt": "2023-03-07T15:00:29.989Z",
+      "updatedAt": "2023-03-15T12:58:01.274Z",
+      "__v": 0,
+      "about": {
+        "resume": "",
+        "videoUrl": "",
+        "internshipModel": ["HYBRID"],
+        "_id": "640a12dfeaaf863e3dfbf7db"
+      },
+      "salaryExpectation": 2000,
+      "city": "Belém",
+      "phoneNumber": "91998054521",
+      "state": {
+        "_id": "6401556e632fbe840e47348c",
+        "cod": "15",
+        "name": "Pará",
+        "abbreviated": "PA"
+      }
+    },
+    {
+      "_id": "640731428491a5ee7472227a",
+      "firstName": "Jhon",
+      "lastName": "Due",
+      "active": true,
+      "favoriteJobs": [],
+      "employersFavorite": ["64095c4f004aa99669319546"],
+      "learnWorldsUserId": "63d89e30d384a7c40a0b2e7e",
+      "academicBackgrounds": [],
+      "experiences": [],
+      "tools": [],
+      "languages": [],
+      "certificates": [],
+      "createdAt": "2023-03-07T12:42:42.829Z",
+      "updatedAt": "2023-03-16T14:13:36.660Z",
+      "__v": 0
+    }
+  ],
+  "addresses": [
+    {
+      "zipCode": "22640040",
+      "street": "Rua Hélios Seelinger",
+      "number": "155",
+      "complement": "Sala 10",
+      "state": {
+        "_id": "6401556e632fbe840e473497",
+        "cod": "33",
+        "name": "Rio de Janeiro",
+        "abbreviated": "RJ"
+      },
+      "neighborhood": "Barra da Tijuca",
+      "city": "Rio de Janeiro",
+      "phoneNumber": "",
+      "cellphoneNumber": "",
+      "_id": "641088ebeaaf863e3dfc0502"
+    }
+  ],
+  "createdAt": "2023-03-09T04:10:55.951Z",
+  "updatedAt": "2023-03-15T16:38:58.713Z",
+  "__v": 0,
+  "businessName": "Academia do Universitario",
+  "humanResources": {
+    "legalRepresentant": "",
+    "legalRepresentantJobTitle": "",
+    "internshipResponsible": "",
+    "internshipResponsibleEmail": "",
+    "contractResponsible": "",
+    "contractResponsibleEmail": "",
+    "isSameInternshipSponsorValue": false,
+    "_id": "64108b7beaaf863e3dfc05aa"
+  }
+}
